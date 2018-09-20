@@ -5,7 +5,6 @@ import static com.liferay.gs.testFramework.SeleniumReadPropertyKeys.getDefaultPa
 import static com.liferay.gs.testFramework.SeleniumReadPropertyKeys.getDefaultUsername;
 import static com.liferay.gs.testFramework.SeleniumReadPropertyKeys.getLinkToLogOut;
 import static com.liferay.gs.testFramework.SeleniumReadPropertyKeys.getUrlToHome;
-import static org.junit.Assert.assertTrue;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
