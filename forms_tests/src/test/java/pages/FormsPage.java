@@ -92,4 +92,12 @@ public class FormsPage {
 	
 	private final By _textFieldHelpLocator = By
 			.xpath(".//input[@placeholder='Enter help text.']");
+	
+	private final By _publishFormLocator = By
+			.xpath(".//*[@class='lfr-btn-label']");
+	
+	public void clickOnPublishFormButton() {
+		waitElement(_publishFormLocator);
+		DRIVER.findElement(_publishFormLocator).click();
+	}
 }

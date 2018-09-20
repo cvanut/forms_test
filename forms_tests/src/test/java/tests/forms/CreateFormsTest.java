@@ -56,6 +56,7 @@ public class CreateFormsTest {
 		_formPage.clickFieldToAddOnForm();
 		_formPage.fillTextLabelInput("Label genérico");
 		_formPage.fillHelpTextInput("Texto de ajuda generico");
+		_formPage.clickOnPublishFormButton();
 	}
 
 	
