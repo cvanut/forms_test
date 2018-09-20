@@ -1,12 +1,10 @@
 package pages;
 
 import static com.liferay.gs.testFramework.SeleniumReadPropertyKeys.DRIVER;
-
-import static utils.CommonMethods.waitElement;
 import static utils.CommonMethods.input;
-import org.openqa.selenium.By;
+import static utils.CommonMethods.waitElement;
 
-import utils.CommonMethods;
+import org.openqa.selenium.By;
 
 public class LoginPage {
 	

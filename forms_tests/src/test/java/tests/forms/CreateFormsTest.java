@@ -6,15 +6,12 @@ import static com.liferay.gs.testFramework.SeleniumReadPropertyKeys.getDefaultUs
 import static com.liferay.gs.testFramework.SeleniumReadPropertyKeys.getLinkToLogOut;
 import static com.liferay.gs.testFramework.SeleniumReadPropertyKeys.getUrlToHome;
 import static com.liferay.gs.testFramework.SeleniumWaitMethods.waitMediumTime;
-import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.FixMethodOrder;
 import org.junit.Test;
-import org.junit.runners.MethodSorters;
 
 import pages.FormsPage;
 import pages.LoginPage;
@@ -57,17 +54,12 @@ public class CreateFormsTest {
 		_formPage.fillFormDescription("Descrição de exemplo");
 		_formPage.fillFormPageTitle("Texto de exemplo");
 		_formPage.clickFieldToAddOnForm();
+		_formPage.fillTextLabelInput("Label genérico");
+		_formPage.fillHelpTextInput("Texto de ajuda generico");
 	}
 
-	@Test	
-	public void createNewForm2() {
-		_formPage.fillFormTitle("Título de exemplooooooooooooo");
-		_formPage.fillFormDescription("Descrição de exemplooooooooooooo");
-		_formPage.fillFormPageTitle("Texto de exemplooooooooooooo");
-		_formPage.clickFieldToAddOnForm();
-	}
 	
-	FormsPage _formPage = new FormsPage();
+	private FormsPage _formPage = new FormsPage();
 	private static final String _liferayPortalPassword = getDefaultPassword();
 	private static final String _liferayPortalUser = getDefaultUsername();
 	private static final LoginPage _loginPage = new LoginPage();
