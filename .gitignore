@@ -1,0 +1,17 @@
+# Ignore auto-generated files
+**.project
+**.classpath
+**.class
+**.settings/
+**.gradle/
+**/reports/
+**/bin/
+**/build/
+**/tempDeployFiles/
+**/node_modules/
+
+# Ignore bundle
+**/bundles
+
+# Ignore license file
+**/license/*.xml

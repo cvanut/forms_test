@@ -1,0 +1,87 @@
+plugins {
+	id "de.undercouch.download" version "3.1.2"
+}
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+apply plugin: 'eclipse'
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+
+
+ext {
+    junitVersion = '4.12'
+    seleniumVersion = '3.3.1'
+    frwSeleniumCommonsVersion = '2.2.2'
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'org.seleniumhq.selenium:selenium-api:' + seleniumVersion
+    compile 'org.seleniumhq.selenium:selenium-java:' + seleniumVersion
+    compile 'org.seleniumhq.selenium:selenium-remote-driver:' + seleniumVersion
+    compile 'org.seleniumhq.selenium:selenium-support:' + seleniumVersion
+    compile 'com.liferay.gs:frw-selenium-commons:' + frwSeleniumCommonsVersion
+    testCompile group: "junit", name: "junit", version: junitVersion
+}
+
+tasks.withType(Test) {
+	testLogging {
+		events "passed", "skipped", "failed"
+		showExceptions true
+		exceptionFormat "short"
+		showCauses true
+		showStackTraces true
+
+		afterSuite { desc, result ->
+			if (!desc.parent) {
+				def output = "Results: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} successes, ${result.failedTestCount} failures, ${result.skippedTestCount} skipped)"
+				def startItem = '|  ', endItem = '  |'
+				def repeatLength = startItem.length() + output.length() + endItem.length()
+				println('\n' + ('-' * repeatLength) + '\n' + startItem + output + endItem + '\n' + ('-' * repeatLength))
+			}
+		}
+	}
+}
+
+task setupCucumberTestWithGoogleChrome {
+    description 'Create the Functional Tests properties and Chrome Driver, for Functional Test with BDD flow, but only work if run on project root folder.'
+
+	doLast {
+		def SeleniumPropertyKeysPath = new File( 'SeleniumProperties' )
+		def SeleniumPropertyKeysFile = new File( 'SeleniumProperties/SeleniumPropertyKeys.properties' )
+		println "You should run this task only on your project root folder"
+		if( !SeleniumPropertyKeysFile.exists() ) {
+			println "Create Configuration for use a local SeleniumPropertyKeys.properties"
+			SeleniumPropertyKeysPath.mkdirs()
+			SeleniumPropertyKeysFile.withWriterAppend { w ->
+				w <<  "browser=defaultGC\ntime-out=10"
+			}
+		} else {
+			println "You already had the local SeleniumPropertyKeys.properties created"
+		}
+		
+		if ( (!new File('SeleniumProperties/chromedriver').exists()) ) {
+			println "Create Configuration for Mac to use the Google Chrome Driver"
+			download {
+				src 'https://chromedriver.storage.googleapis.com/2.39/chromedriver_mac64.zip'
+				dest new File(SeleniumPropertyKeysPath, 'chromedriver_mac64.zip')
+			}
+            
+			copy {
+				def DriverPath = new File ('SeleniumProperties/')
+				from zipTree('SeleniumProperties/chromedriver_mac64.zip')
+				into "SeleniumProperties/"
+			}
+			delete 'SeleniumProperties/chromedriver_mac64.zip'
+
+		} else {
+			println "You already had the local Google Chrome Driver created"
+		}
+	}
+}
