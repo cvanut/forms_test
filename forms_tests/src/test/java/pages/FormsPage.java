@@ -61,36 +61,6 @@ public class FormsPage {
 	
 	}
 	
-	/*
-	public void clickFieldToAddOnForm(String fieldToAddOnForm) {
-		waitElement(addFieldLocator);
-		DRIVER.findElement(addFieldLocator).click();
-
-		By fieldToAddOnFormLocator = By
-				.xpath(".//*[contains(@class, 'form-builder-field-types-list')]//*[contains(text(), '"
-						+ fieldToAddOnForm + "')]");
-
-		waitElement(fieldToAddOnFormLocator);
-		DRIVER.findElement(fieldToAddOnFormLocator).click();
-		
-		SeleniumWaitMethods.waitLongTime();
-		By loaderLocator = By.xpath(".//*[contains(@class,'loading-icon')]");
-		DRIVER.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
-		try {
-			while (DRIVER.findElement(loaderLocator).isDisplayed()) {
-				SeleniumWaitMethods.waitShortTime();
-			}
-		} catch (Exception e) {
-			System.out.println("The loader is not appear anymore");
-		}
-
-		By fieldOnScreen = By.cssSelector(".form-builder-field-content-target");
-
-		assertTrue(DRIVER.findElement(fieldOnScreen).isDisplayed());
-		
-	}
-	*/
-	
 	private final By _formsLinkLocator = By.xpath(
 			//how to use: //*[contains(@id,'')q]
 			"//*[@id=\"_com_liferay_product_navigation_product_menu_web_portlet_ProductMenuPortlet_portlet_com_liferay_dynamic_data_mapping_form_web_portlet_DDMFormAdminPortlet\"]"

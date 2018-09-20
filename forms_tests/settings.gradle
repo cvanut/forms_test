@@ -15,4 +15,4 @@ include 'api'
 include 'services:webservice'
 */
 
-rootProject.name = 'testes_funcionais_71m1'
+rootProject.name = 'forms_tests'
