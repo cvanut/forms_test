@@ -82,8 +82,6 @@ public class FormsPage {
 		alert.accept();
 	}
 	
-	
-	
 	private final By _formsLinkLocator = By.xpath(
 
 			".//*[@id='_com_liferay_product_navigation_product_"

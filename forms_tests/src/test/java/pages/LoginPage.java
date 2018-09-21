@@ -33,15 +33,8 @@ public class LoginPage {
 		clickOnSignInOfTheModal();
 	}
 
-	private final By _alertErrorLocator = By.xpath(
-		".//*[contains(@class,'alert-danger')]");
 	private final By _emailAddressLocator = By.xpath(
-		".//*[@id='_com_liferay_login_web_portlet_LoginPortlet_login']");
-	private final By _loginHelperLocator = By.xpath(
-		".//*[@id='_com_liferay_login_web_portlet_LoginPortlet_loginHelper']");
-	private final By _passwordHelperLocator = By.xpath(
-		".//*[@id='_com_liferay_login_web_portlet_" +
-			"LoginPortlet_passwordHelper']");
+			".//*[@id='_com_liferay_login_web_portlet_LoginPortlet_login']");
 	private final By _passwordLocator = By.xpath(
 		".//*[@id='_com_liferay_login_web_portlet_LoginPortlet_password']");
 	private final By _signInButtonOnModalLocator = By.xpath(

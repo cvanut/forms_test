@@ -39,7 +39,10 @@ public class DeleteFormsTest {
 		_formPage.clickOnForms();
 		_formPage.clickOnFormOptionMenu();
 		_formPage.clickOnDeleteForm();
+		
 	}
+	
+	
 	
 	FormsPage _formPage = new FormsPage();
 	private static final String _liferayPortalPassword = getDefaultPassword();
