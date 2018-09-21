@@ -4,6 +4,7 @@ import static com.liferay.gs.testFramework.SeleniumReadPropertyKeys.DRIVER;
 import static utils.CommonMethods.waitElement;
 import static utils.CommonMethods.waitElementAppearOnScreen;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
@@ -63,8 +64,28 @@ public class FormsPage {
 		DRIVER.findElement(_textFieldHelpLocator).sendKeys(text);
 	}
 	
+	public void clickOnPublishFormButton() {
+		waitElement(_publishFormLocator);
+		DRIVER.findElement(_publishFormLocator).click();
+	}
+	
+	public void clickOnFormOptionMenu() {
+		waitElement(_formOptionMenuLocator);
+		DRIVER.findElement(_formOptionMenuLocator).click();
+	}
+	
+	public void clickOnDeleteForm() {
+		waitElement(_deleteFormLocator);
+		DRIVER.findElement(_deleteFormLocator).click();
+		
+		Alert alert = DRIVER.switchTo().alert();
+		alert.accept();
+	}
+	
+	
+	
 	private final By _formsLinkLocator = By.xpath(
-			// how to use: //*[contains(@id,'')q]
+
 			".//*[@id='_com_liferay_product_navigation_product_"
 				+ "menu_web_portlet_ProductMenuPortlet_portlet_com_"
 					+ "liferay_dynamic_data_mapping_form_web_portlet_"
@@ -94,10 +115,14 @@ public class FormsPage {
 			.xpath(".//input[@placeholder='Enter help text.']");
 	
 	private final By _publishFormLocator = By
-			.xpath(".//*[@class='lfr-btn-label']");
+			.xpath(".//*[@class='lfr-btn-label' and contains(text(),'Publish Form')]");
 	
-	public void clickOnPublishFormButton() {
-		waitElement(_publishFormLocator);
-		DRIVER.findElement(_publishFormLocator).click();
-	}
+	private final By _formOptionMenuLocator = By
+			.xpath(".//*[@id=\"_com_liferay_dynamic_data_mapping_form_web_portlet_DDMFormAdminPortlet_formInstance_1_menu\"]");
+	
+	private final By _deleteFormLocator = By
+			.xpath("//*[@class='taglib-text-icon' and contains (text(), 'Delete')]\n");
+	
+	
+	
 }

@@ -1,4 +1,4 @@
-package tests;
+package login;
 
 import static com.liferay.gs.testFramework.SeleniumReadPropertyKeys.DRIVER;
 import static com.liferay.gs.testFramework.SeleniumReadPropertyKeys.getDefaultPassword;

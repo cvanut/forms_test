@@ -5,6 +5,7 @@ import static com.liferay.gs.testFramework.SeleniumReadPropertyKeys.getDefaultPa
 import static com.liferay.gs.testFramework.SeleniumReadPropertyKeys.getDefaultUsername;
 import static com.liferay.gs.testFramework.SeleniumReadPropertyKeys.getLinkToLogOut;
 import static com.liferay.gs.testFramework.SeleniumReadPropertyKeys.getUrlToHome;
+import static com.liferay.gs.testFramework.SeleniumWaitMethods.waitMediumTime;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -17,7 +18,12 @@ public class DeleteFormsTest {
 	
 	@AfterClass
 	public static void afterTestClass() throws Exception {
-		DRIVER.get(getLinkToLogOut());
+		DRIVER.get(getUrlToHome() + getLinkToLogOut());
+		DRIVER.close();
+		waitMediumTime();
+		waitMediumTime();
+		waitMediumTime();
+		DRIVER.quit();
 	}
 
 	@BeforeClass
@@ -28,8 +34,11 @@ public class DeleteFormsTest {
 	}
 
 	@Test	
-	public void createNewForm() {
+	public void deleteFirstForm() {
 		_formPage.clickOnContent();
+		_formPage.clickOnForms();
+		_formPage.clickOnFormOptionMenu();
+		_formPage.clickOnDeleteForm();
 	}
 	
 	FormsPage _formPage = new FormsPage();

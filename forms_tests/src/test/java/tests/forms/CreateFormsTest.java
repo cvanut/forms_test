@@ -47,9 +47,9 @@ public class CreateFormsTest {
 		DRIVER.get(getUrlToHome());
 	}
 
-	//Preencher Form Basico Finalizado
+	
 	@Test	
-	public void createNewForm() {
+	public void createSuccessfullNewForm() {
 		_formPage.fillFormTitle("Título de exemplo");
 		_formPage.fillFormDescription("Descrição de exemplo");
 		_formPage.fillFormPageTitle("Texto de exemplo");
