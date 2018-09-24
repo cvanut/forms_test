@@ -6,10 +6,14 @@ import static com.liferay.gs.testFramework.SeleniumReadPropertyKeys.getDefaultUs
 import static com.liferay.gs.testFramework.SeleniumReadPropertyKeys.getLinkToLogOut;
 import static com.liferay.gs.testFramework.SeleniumReadPropertyKeys.getUrlToHome;
 import static com.liferay.gs.testFramework.SeleniumWaitMethods.waitMediumTime;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import pages.FormsPage;
 import pages.LoginPage;
@@ -32,13 +36,29 @@ public class DeleteFormsTest {
 		_loginPage.clickOnSignIn();
 		_loginPage.signInOnPortal(_liferayPortalUser, _liferayPortalPassword);
 	}
+	
+	@Before
+	public void setup() {
+		_formPage.clickOnContent();
+		_formPage.clickOnForms();
+
+	}
 
 	@Test	
 	public void deleteFirstForm() {
-		_formPage.clickOnContent();
 		_formPage.clickOnForms();
-		_formPage.clickOnFormOptionMenu();
-		_formPage.clickOnDeleteForm();
+		_formPage.waitAddButtonAppear();
+
+		By listElements = By.xpath(
+				".//*[@id='_com_liferay_dynamic_data_mapping_form_web_portlet_DDMFormAdminPortlet_formInstanceSearchContainer']");
+		
+		do {
+			_formPage.clickOnFormOptionMenu();
+			_formPage.clickOnDeleteForm();
+			_formPage.closeSuccessMessageAppear();
+		} while (!DRIVER.findElement(listElements).getText().isEmpty());
+		
+		assertTrue(DRIVER.findElement(listElements).getText().isEmpty());
 		
 	}
 	

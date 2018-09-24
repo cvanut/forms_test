@@ -28,6 +28,11 @@ public class FormsPage {
 		waitElement(_addFormButttonLocator);
 		DRIVER.findElement(_addFormButttonLocator).click();
 	}
+	
+	public void waitAddButtonAppear() {
+		waitElementAppearOnScreen(_addFormButttonLocator);
+		waitElement(_addFormButttonLocator);
+	}
 
 	public void fillFormTitle(String text) {
 		waitElement(_formTitleLocator);
@@ -76,10 +81,17 @@ public class FormsPage {
 	
 	public void clickOnDeleteForm() {
 		waitElement(_deleteFormLocator);
+		
 		DRIVER.findElement(_deleteFormLocator).click();
 		
 		Alert alert = DRIVER.switchTo().alert();
 		alert.accept();
+	}
+	
+	public void closeSuccessMessageAppear() {
+		waitElement(_successMessageLocator);
+		waitElement(_closeSuccessMessageLocator);
+		DRIVER.findElement(_closeSuccessMessageLocator).click();
 	}
 	
 	private final By _formsLinkLocator = By.xpath(
@@ -88,6 +100,12 @@ public class FormsPage {
 				+ "menu_web_portlet_ProductMenuPortlet_portlet_com_"
 					+ "liferay_dynamic_data_mapping_form_web_portlet_"
 						+ "DDMFormAdminPortlet']");
+	
+	private final By _successMessageLocator = By.xpath(
+			".//*[contains(@class,'alert-success') and contains(@class, 'alert')]");
+
+	private final By _closeSuccessMessageLocator = By.xpath(
+			".//*[contains(@class,'btn') and contains(@class, 'close')]");
 
 	private final By _contentLinkLocator = By.xpath(
 			".//*[@id='_com_liferay_product_navigation_product_menu_web_portlet_ProductMenuPortlet_site_administrationCollapse']/div/div[2]/a[2]");
@@ -118,9 +136,11 @@ public class FormsPage {
 	private final By _formOptionMenuLocator = By
 			.xpath(".//*[@id=\"_com_liferay_dynamic_data_mapping_form_web_portlet_DDMFormAdminPortlet_formInstance_1_menu\"]");
 	
+	private final By _formInstanceIDLocator = By
+			.xpath("//*[@class='form-instance-id'");
+
+	
 	private final By _deleteFormLocator = By
 			.xpath("//*[@class='taglib-text-icon' and contains (text(), 'Delete')]\n");
-	
-	
 	
 }
